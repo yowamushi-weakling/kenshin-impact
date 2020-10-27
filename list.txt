@@ -1,0 +1,15 @@
+~Kenshin Impact~
+
+Hierarchy:
+- Manager
+- Background
+- Map_Collider
+- Player
+- Enemies
+- UI
+
+Assets:
+- GameManager
+- AudioManager
+- UIManager
+- PlayerController
