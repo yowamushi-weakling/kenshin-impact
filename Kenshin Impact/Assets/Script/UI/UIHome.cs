@@ -4,15 +4,27 @@ using UnityEngine;
 
 public class UIHome : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public GameManager gameManager;
+    public UIManager uiManager;
+
+    public void Show()
     {
-        
+        gameObject.SetActive(true);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Hide()
     {
-        
+        gameObject.SetActive(false);
+    }
+
+    public void Play()
+    {
+        uiManager.ChangeMenu(UIManager.MENU.GAMEPLAY);
+        gameManager.StartGame();
+    }
+
+    public void Exit()
+    {
+
     }
 }

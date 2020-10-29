@@ -4,15 +4,22 @@ using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public UIHome home;
+    public UIGameplay gameplay;
+    public UIPause pause;
+    public UISetting setting;
+
+    public void ChangeMenu(MENU menu)
     {
         
     }
 
-    // Update is called once per frame
-    void Update()
+    public enum MENU
     {
-        
+        NONE = 0,
+        HOME = 1,
+        GAMEPLAY = 2,
+        PAUSE = 3,
+        SETTING = 4
     }
 }
