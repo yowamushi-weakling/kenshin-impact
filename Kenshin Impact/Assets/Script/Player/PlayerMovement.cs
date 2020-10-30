@@ -4,26 +4,27 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public GameManager gameManager;
+    public float moveSpeed = 1;
+    public float jumpForce = 1;
 
-    public Rigidbody2D rigidbody2D;
-    public BoxCollider2D collider2D;
+    private Rigidbody2D rigidbody2;
 
-    Vector2 direction;
-    float horizontal;
-    float vertical;
-
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        horizontal = Input.GetAxisRaw("Horizontal");
-        vertical = Input.GetAxisRaw("Vertical");
-
-        MovePlayer();
+        rigidbody2 = GetComponent<Rigidbody2D>();
     }
 
-    public void MovePlayer()
+    private void Update()
     {
-        rigidbody2D.velocity = new Vector2(horizontal * 10, vertical * 10);
+        var movement = Input.GetAxisRaw("Horizontal");
+        transform.position += new Vector3(movement, 0, 0) * Time.deltaTime * moveSpeed;
+
+        if (!Mathf.Approximately(0, movement))
+            transform.rotation = movement > 0 ? Quaternion.Euler(0, 180, 0) : Quaternion.identity;
+
+        if (Input.GetButtonDown("Jump") && Mathf.Abs(rigidbody2.velocity.y) < 0.001f)
+        {
+            rigidbody2.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
+        }
     }
 }
